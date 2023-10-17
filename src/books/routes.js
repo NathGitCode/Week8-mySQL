@@ -3,7 +3,14 @@ const bookRouter = Router();
 
 const Book = require("./model");
 
-const { addBook, findAllBooks } = require("./controllers");
+const {
+  addBook,
+  findAllBooks,
+  findBookByAuthor,
+  deleteBookByTitle,
+  deleteAll,
+  updateOnTitle,
+} = require("./controllers");
 
 // adds a book to the DB
 bookRouter.post("/books", addBook);
@@ -12,15 +19,15 @@ bookRouter.post("/books", addBook);
 bookRouter.get("/books", findAllBooks);
 
 // gets a book by author
-bookRouter.get("");
+bookRouter.get("/books/:author", findBookByAuthor);
 
 // update book on title
-bookRouter.put("");
+bookRouter.put("/books/:title", updateOnTitle);
 
 // deletes a single book by title
-bookRouter.delete("");
+bookRouter.delete("/books/:title", deleteBookByTitle);
 
 // deletes all books
-bookRouter.delete("");
+bookRouter.delete("/books/deleteall", deleteAll);
 
 module.exports = bookRouter;
