@@ -2,28 +2,35 @@ const Author = require("./model");
 const Book = require("../books/model");
 
 const addAuthorOb = async (req, res) => {
-  const addAuthor = await Author.create(req.body);
-  res.send(addAuthor);
+  try {
+    const addAuthor = await Author.create(req.body);
+    res.status(201).json({ message: "success", addAuthor });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
 };
 
 const getAuthor = async (req, res) => {
-  const getAllAuthors = await Author.findAll();
-  res.send(getAllAuthors);
+  try {
+    const getAllAuthors = await Author.findAll();
+    res.status(201).json({ message: "success", getAllAuthors });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
 };
 
 const booksByAuthor = async (req, res) => {
-  const getBooksByAuthor = await Author.findOne({
-    where: {
-      authorName: req.params.authorName,
-    },
-    include: Book,
-  });
-
-  const successRes = {
-    message: "success",
-    getBooksByAuthor,
-  };
-  res.send(successRes);
+  try {
+    const getBooksByAuthor = await Author.findOne({
+      where: {
+        authorName: req.params.authorName,
+      },
+      include: Book,
+    });
+    res.status(201).json({ message: "success", getBooksByAuthor });
+  } catch (error) {
+    res.status(500).json({ message: error.message, error });
+  }
 };
 
 module.exports = {

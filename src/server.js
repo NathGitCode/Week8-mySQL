@@ -25,12 +25,6 @@ const syncTables = async () => {
   await Book.sync({ alter: true });
   await Author.sync({ alter: true });
   await Genre.sync({ alter: true });
-
-  // await Author.hasMany(Book);
-  // await Book.belongsTo(Author);
-
-  // await Genre.hasMany(Book);
-  // await Book.belongsTo(Genre);
 };
 
 app.get("/health", (req, res) => {
