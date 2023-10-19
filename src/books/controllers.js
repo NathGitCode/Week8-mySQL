@@ -7,39 +7,25 @@ const addBook = async (req, res) => {
     author: req.body.author,
     genre: req.body.genre,
   });
-  console.log(newBook);
 
-  const successResponse = {
-    message: "success",
-    newBook: newBook,
-  };
-
-  res.send(successResponse);
+  res.send(newBook);
 };
 
 const findAllBooks = async (req, res) => {
   const allBooks = await Book.findAll();
-  const successResponse = {
-    message: "allbooks",
-    allBooks: allBooks,
-  };
-  res.send(successResponse);
+  res.send(allBooks);
 };
 
 const findBookByAuthor = async (req, res) => {
   const findByAuthor = await Book.findAll({
-    where: {
-      author: req.params.author,
-    },
+    author: req.params.author,
   });
   res.send(findByAuthor);
 };
 
 const deleteBookByTitle = async (req, res) => {
   const deleteByTitle = await Book.destroy({
-    where: {
-      title: req.params.title,
-    },
+    title: req.params.title,
   });
   res.send(deleteByTitle);
 };
@@ -66,10 +52,10 @@ const updateOnTitle = async (req, res) => {
 };
 
 module.exports = {
-  addBook: addBook,
-  findAllBooks: findAllBooks,
-  findBookByAuthor: findBookByAuthor,
-  deleteBookByTitle: deleteBookByTitle,
-  deleteAll: deleteAll,
-  updateOnTitle: updateOnTitle,
+  addBook,
+  findAllBooks,
+  findBookByAuthor,
+  deleteBookByTitle,
+  deleteAll,
+  updateOnTitle,
 };
