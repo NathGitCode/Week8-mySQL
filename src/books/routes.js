@@ -11,21 +11,21 @@ const {
 } = require("./controllers");
 
 // adds a book to the DB
-bookRouter.post("/books", addBook);
+bookRouter.post("/", addBook);
 
 // gets all books
-bookRouter.get("/books", findAllBooks);
+bookRouter.get("/", findAllBooks);
 
 // gets a book by author
-bookRouter.get("/books/:author", findBookByAuthor);
+bookRouter.get("/:author", findBookByAuthor);
 
 // update book on title
-bookRouter.put("/books/:title", updateOnTitle);
+bookRouter.put("/:title", updateOnTitle);
 
 // deletes a single book by title
-bookRouter.delete("/books/:title", deleteBookByTitle);
+bookRouter.delete("/:title", deleteBookByTitle);
 
 // deletes all books
-bookRouter.delete("/books/deleteall", deleteAll);
+bookRouter.delete("/deleteall", deleteAll);
 
 module.exports = bookRouter;

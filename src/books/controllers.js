@@ -1,12 +1,7 @@
-const { DataTypes } = require("sequelize");
 const Book = require("./model");
 
 const addBook = async (req, res) => {
-  const newBook = await Book.create({
-    title: req.body.title,
-    author: req.body.author,
-    genre: req.body.genre,
-  });
+  const newBook = await Book.create(req.body);
 
   res.send(newBook);
 };
@@ -25,7 +20,9 @@ const findBookByAuthor = async (req, res) => {
 
 const deleteBookByTitle = async (req, res) => {
   const deleteByTitle = await Book.destroy({
-    title: req.params.title,
+    where: {
+      title: req.params.title,
+    },
   });
   res.send(deleteByTitle);
 };

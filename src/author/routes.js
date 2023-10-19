@@ -4,11 +4,12 @@ const authorRouter = Router();
 const { addAuthorOb, booksByAuthor, getAuthor } = require("./controllers");
 
 // adds an author to the db
-authorRouter.post("/author", addAuthorOb);
+authorRouter.post("/", addAuthorOb);
 
-authorRouter.get("/author", getAuthor);
+// gets the authors
+authorRouter.get("/", getAuthor);
 
 // gets a single author by name and there books
-authorRouter.get("/books/author/:authorName", booksByAuthor);
+authorRouter.get("/:authorName", booksByAuthor);
 
 module.exports = authorRouter;
